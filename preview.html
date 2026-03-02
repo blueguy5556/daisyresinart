@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resin Art by Daisy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f3f0;
+      text-align: center;
+    }
+    header {
+      background: #102a43;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+    .product {
+      background: white;
+      margin: 15px;
+      padding: 20px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #102a43;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+    }
+    .admin-panel {
+      display: none;
+      margin-top: 30px;
+    }
+    .about {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Resin Art by Daisy</h1>
+  <p>Handcrafted Resin Art in Pakistan</p>
+</header>
+
+<div class="about">
+  <h2>About This Website</h2>
+  <p>
+    Resin Art by Daisy is a handcrafted resin art brand based in Pakistan.
+    Every product is carefully poured, designed, and finished with attention
+    to detail. Each piece is unique and made with high-quality materials
+    to ensure durability and shine.
+  </p>
+  <p>
+    This website showcases available creations and allows customers
+    to explore custom designs. Products are updated directly by the creator.
+  </p>
+</div>
+
+<h2>Available Products</h2>
+<p>No items available yet. Stay tuned for upcoming releases.</p>
+
+<div class="container" id="productList"></div>
+
+<hr>
+
+<h3>Creator Login</h3>
+<input type="password" id="password" placeholder="Enter Creator Password">
+<button onclick="login()">Login</button>
+
+<div class="admin-panel" id="adminPanel">
+  <h2>Add New Resin Item</h2>
+  <input type="text" id="itemName" placeholder="Item Name">
+  <input type="number" id="itemPrice" placeholder="Price (Rs)">
+  <button onclick="addProduct()">Add Item</button>
+</div>
+
+<script>
+const creatorPassword = "iqbalmir";
+
+function login() {
+  const entered = document.getElementById("password").value;
+  if (entered === creatorPassword) {
+    document.getElementById("adminPanel").style.display = "block";
+    alert("Welcome, Creator!");
+  } else {
+    alert("Incorrect Password");
+  }
+}
+
+function addProduct() {
+  const name = document.getElementById("itemName").value;
+  const price = document.getElementById("itemPrice").value;
+
+  if (name === "" || price === "") {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const productDiv = document.createElement("div");
+  productDiv.className = "product";
+  productDiv.innerHTML = `
+    <h3>${name}</h3>
+    <p>Rs. ${price}</p>
+  `;
+
+  document.getElementById("productList").appendChild(productDiv);
+
+  document.getElementById("itemName").value = "";
+  document.getElementById("itemPrice").value = "";
+}
+</script>
+
+</body>
+</html>
